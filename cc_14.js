@@ -26,6 +26,11 @@ function addSupportTicket(customerName, issueDescription, priorityLevel) {
        ticketContainer.removeChild(ticket); // Adding an event listener for the click event 
     });
 
+    // Task 3 - Applying high-priority styling if applicable
+    if (priorityLevel === "High") {
+        ticket.classList.add("high-priority");
+    }
+
     ticket.appendChild(nameHeading); // Appending customer's name
     ticket.appendChild(issueParagraph); // Appending issue paragraph 
     ticket.appendChild(priorityLabel); // Appending priority label 
@@ -36,3 +41,15 @@ addSupportTicket("Bob Williams", "Unable to access account", "High");
 addSupportTicket("Elle Davis", "Payment not processing", "Medium");
 addSupportTicket("Mike Johnson", "Error message on login", "Low");
 addSupportTicket("Emily Cooper", "Password reset not working", "High");
+
+
+// Task 3: Converting NodeLists to Arrays for Bulk Updates
+// Writing a function to highlight high-priority tickets
+function highlightHighPriorityTickets() {
+    const highPriorityTickets = Array.from(document.querySelectorAll(".high-priority")); // Converting the NodeList into an array
+    
+    highPriorityTickets.forEach(ticket => {
+        ticket.style.border = "2px solid navy";
+    }); // Using an array method to update the appearance of high-priority tickets (adding a border)
+}
+highlightHighPriorityTickets(); // Applying highlight after adding tickets
