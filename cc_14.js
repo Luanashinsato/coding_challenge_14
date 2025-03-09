@@ -22,8 +22,9 @@ function addSupportTicket(customerName, issueDescription, priorityLevel) {
     // Creating a resolve button to remove the ticket
     const resolveButton = document.createElement("button");
     resolveButton.textContent = "Resolve";
-    resolveButton.addEventListener("click", () => {
+    resolveButton.addEventListener("click", (event) => {
        ticketContainer.removeChild(ticket); // Adding an event listener for the click event 
+       event.stopPropagation(); // Task 4 - Preventing event bubbling to container
     });
 
     // Task 3 - Applying high-priority styling if applicable
@@ -53,3 +54,16 @@ function highlightHighPriorityTickets() {
     }); // Using an array method to update the appearance of high-priority tickets (adding a border)
 }
 highlightHighPriorityTickets(); // Applying highlight after adding tickets
+
+
+// Task 4: Implementing Ticket Resolution with Event Bubbling
+// Selecting the ticket container 
+const ticketContainer = document.getElementById('ticketContainer'); 
+
+// Attaching an event listener to the parent container to log when it is clicked
+ticketContainer.addEventListener("click", (event) => {
+    let ticket = event.target.closest(".ticket-card");
+    if (ticket) {
+    console.log("Employee Card clicked");
+    }
+});
